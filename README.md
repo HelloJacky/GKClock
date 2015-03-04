@@ -12,6 +12,7 @@ self.clock.frame = self.frame;
 [self.view addSubview:self.clock];
 [self.clock start];
  ```
+ <img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/default_style.png" alt="GKClock" title="GKClock">
  
 ###Use Custom Style：
  
