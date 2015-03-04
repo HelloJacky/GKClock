@@ -12,7 +12,7 @@ self.clock.frame = self.frame;
 [self.view addSubview:self.clock];
 [self.clock start];
  ```
- <img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/default_style.png" alt="GKClock" title="GKClock">
+ <img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/default_style.png">
  
 ###Use Custom Style：
  
@@ -25,6 +25,8 @@ self.clock.clockBorderColor = [UIColor yellowColor];
 self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
                                NSForegroundColorAttributeName : [UIColor yellowColor]};
 ```
+
+<img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/custom_style.png">
 
 ##Contact
 If you have any questions comments or suggestions, send me a message to hijacky00@gmail.com. If you find a bug, or want to submit a pull request, let me know.
