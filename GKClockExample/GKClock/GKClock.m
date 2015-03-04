@@ -130,6 +130,7 @@
     
     //添加中心圆点到表盘
     UIImageView *centerImageView = [[UIImageView alloc] initWithImage:centerPointImage];
+    centerImageView.layer.shouldRasterize = YES;
     centerImageView.contentMode = UIViewContentModeCenter;
     centerImageView.frame = CGRectMake(0, 0, centerPointSize.width, centerPointSize.height);
     centerImageView.center = CGPointMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2);
@@ -138,7 +139,7 @@
 }
 
 - (UIImage *)drawHourHand{
-    CGSize hourHandSize = CGSizeMake(7.f, _radius * 3 / 5);
+    CGSize hourHandSize = CGSizeMake(7.f, _radius * 2.5 / 5);
     UIGraphicsBeginImageContextWithOptions(hourHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, hourHandSize.width, hourHandSize.height)];
     [_hourHandColor setFill];
@@ -149,7 +150,7 @@
 }
 
 - (UIImage *)drawMinuteHand{
-    CGSize minuteHandSize = CGSizeMake(5.f, _radius * 4/ 5);
+    CGSize minuteHandSize = CGSizeMake(5.f, _radius * 3.5/ 5);
     UIGraphicsBeginImageContextWithOptions(minuteHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, minuteHandSize.width, minuteHandSize.height)];
     [_minuteHandColor setFill];
