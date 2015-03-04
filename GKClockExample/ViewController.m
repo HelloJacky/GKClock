@@ -18,21 +18,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     self.clock = [[GKClock alloc] init];
-    self.clock.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 200);
-    self.clock.minuteHandColor = [UIColor greenColor];
-    self.clock.hourHandColor = [UIColor blueColor];
+    self.clock.layer.borderColor = [UIColor yellowColor].CGColor;
+//    self.clock.layer.borderWidth = 1.0f;
+    self.clock.frame = CGRectMake(10.f, 0.f, self.view.frame.size.width - 20.f, self.view.frame.size.height - 100.f);
+    self.clock.minuteHandColor = [UIColor yellowColor];
+    self.clock.hourHandColor = [UIColor yellowColor];
+    self.clock.secondHandColor = [UIColor yellowColor];
+    self.clock.clockBorderColor = [UIColor yellowColor];
+    self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
+                                   NSForegroundColorAttributeName : [UIColor yellowColor]};
     [self.view addSubview:self.clock];
     [self.clock start];
     
     UIButton *switchButton =  [UIButton buttonWithType:UIButtonTypeCustom];
     switchButton.layer.borderWidth = 1.f;
+    switchButton.layer.borderColor = [UIColor yellowColor].CGColor;
     switchButton.frame = CGRectMake(10.f, CGRectGetMaxY(self.clock.frame) + 10.f, self.view.frame.size.width - 20.f, 40.f);
     [switchButton addTarget:self action:@selector(switchButtongClick:) forControlEvents:UIControlEventTouchUpInside];
     [switchButton setTitle:@"Start" forState:UIControlStateNormal];
     [switchButton setTitle:@"Stop" forState:UIControlStateSelected];
+    [switchButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
     [self.view addSubview:switchButton];
 }
 

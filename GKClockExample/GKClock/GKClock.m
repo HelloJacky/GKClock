@@ -71,7 +71,8 @@
     CGContextSetFillColorWithColor(context, _clockTintColor.CGColor);
     CGContextSetLineWidth(context, _clockBorderWidth);
     _radius = (self.frame.size.width < self.frame.size.height) ? self.frame.size.width / 2 : self.frame.size.height / 2;
-    CGContextAddArc(context, CGRectGetMidX(self.frame), CGRectGetMidY(self.frame), _radius, 0.f, 2 * M_PI, 0.f);
+    _radius = _radius - _clockBorderWidth;
+    CGContextAddArc(context,CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2, _radius, 0.f, 2 * M_PI, 0.f);
     CGContextDrawPath(context, kCGPathFillStroke);
     
     NSArray *momentPointList = [self momentRectList];
@@ -99,8 +100,8 @@
     //add hour hand
     _hourHand = [[UIImageView alloc] initWithImage:hourHandImage];
     _hourHand.contentMode = UIViewContentModeTop;
-    _hourHand.frame = CGRectMake(CGRectGetMidX(self.frame) - hourHandSize.width/2,
-                                 CGRectGetMidY(self.frame) - hourHandSize.height,
+    _hourHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - hourHandSize.width/2,
+                                 CGRectGetHeight(self.frame)/2 - hourHandSize.height,
                                  hourHandSize.width,
                                  hourHandSize.height * 2);
     [self addSubview:_hourHand];
@@ -108,8 +109,8 @@
     //add minute hand
     _minuteHand = [[UIImageView alloc] initWithImage:minuteHandImage];
     _minuteHand.contentMode = UIViewContentModeTop;
-    _minuteHand.frame = CGRectMake(CGRectGetMidX(self.frame) - minuteHandSize.width / 2,
-                                   CGRectGetMidY(self.frame) - minuteHandSize.height,
+    _minuteHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - minuteHandSize.width / 2,
+                                   CGRectGetHeight(self.frame)/2 - minuteHandSize.height,
                                    minuteHandSize.width,
                                    minuteHandSize.height * 2);
     [self addSubview:_minuteHand];
@@ -117,8 +118,8 @@
     //add second hand
     _secondHand = [[UIImageView alloc] initWithImage:secondHandImage];
     _secondHand.contentMode = UIViewContentModeTop;
-    _secondHand.frame = CGRectMake(CGRectGetMidX(self.frame) - secondHandSize.width / 2,
-                                   CGRectGetMidY(self.frame) - secondHandSize.height,
+    _secondHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - secondHandSize.width / 2,
+                                   CGRectGetHeight(self.frame)/2 - secondHandSize.height,
                                    secondHandSize.width,
                                    secondHandSize.height * 2);
     [self addSubview:_secondHand];
@@ -174,8 +175,8 @@
                                                   context:nil];
         
         CGFloat angle = i * 30;
-        CGFloat x = CGRectGetMidX(self.frame) + samllerRadius * sin(angle * M_PI / 180.f) - fontRect.size.width / 2;
-        CGFloat y = CGRectGetMidY(self.frame) - samllerRadius * cos(angle * M_PI / 180.f) - fontRect.size.height / 2 ;
+        CGFloat x = CGRectGetWidth(self.frame)/2 + samllerRadius * sin(angle * M_PI / 180.f) - fontRect.size.width / 2;
+        CGFloat y = CGRectGetHeight(self.frame)/2 - samllerRadius * cos(angle * M_PI / 180.f) - fontRect.size.height / 2 ;
         
         [pointList addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
     }
