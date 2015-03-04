@@ -26,7 +26,7 @@ self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"Amer
 ```
 
 ##Contact
-If you have any questions comments or suggestions, send me a message. If you find a bug, or want to submit a pull request, let me know.
+If you have any questions comments or suggestions, send me a message to hijacky00@gmail.com. If you find a bug, or want to submit a pull request, let me know.
 
 ##License
 MIT License
