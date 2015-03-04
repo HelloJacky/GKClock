@@ -105,6 +105,7 @@
                                  CGRectGetHeight(self.frame)/2 - hourHandSize.height,
                                  hourHandSize.width,
                                  hourHandSize.height * 2);
+    _hourHand.layer.shouldRasterize = YES;
     [self addSubview:_hourHand];
     
     //添加分针到表盘
@@ -114,6 +115,7 @@
                                    CGRectGetHeight(self.frame)/2 - minuteHandSize.height,
                                    minuteHandSize.width,
                                    minuteHandSize.height * 2);
+    _minuteHand.layer.shouldRasterize = YES;
     [self addSubview:_minuteHand];
     
     //添加秒针到表盘
@@ -123,6 +125,7 @@
                                    CGRectGetHeight(self.frame)/2 - secondHandSize.height,
                                    secondHandSize.width,
                                    secondHandSize.height * 2);
+    _secondHand.layer.shouldRasterize = YES;
     [self addSubview:_secondHand];
     
     //添加中心圆点到表盘
