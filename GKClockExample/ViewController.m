@@ -25,7 +25,6 @@
     [self.clock start];
     
     //自定义样式
-    self.clock.layer.borderColor = [UIColor yellowColor].CGColor;
     self.clock.minuteHandColor = [UIColor yellowColor];
     self.clock.hourHandColor = [UIColor yellowColor];
     self.clock.secondHandColor = [UIColor yellowColor];
