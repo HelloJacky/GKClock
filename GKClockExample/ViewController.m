@@ -40,8 +40,8 @@
     switchButton.layer.borderColor = [UIColor yellowColor].CGColor;
     switchButton.frame = CGRectMake(10.f, CGRectGetMaxY(self.clock.frame) + 10.f, self.view.frame.size.width - 20.f, 40.f);
     [switchButton addTarget:self action:@selector(switchButtongClick:) forControlEvents:UIControlEventTouchUpInside];
-    [switchButton setTitle:@"Start" forState:UIControlStateNormal];
-    [switchButton setTitle:@"Stop" forState:UIControlStateSelected];
+    [switchButton setTitle:@"Stop" forState:UIControlStateNormal];
+    [switchButton setTitle:@"Start" forState:UIControlStateSelected];
     [switchButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
     [self.view addSubview:switchButton];
 }
