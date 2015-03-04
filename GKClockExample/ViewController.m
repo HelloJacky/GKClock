@@ -24,12 +24,12 @@
     self.clock.layer.borderColor = [UIColor yellowColor].CGColor;
 //    self.clock.layer.borderWidth = 1.0f;
     self.clock.frame = CGRectMake(10.f, 0.f, self.view.frame.size.width - 20.f, self.view.frame.size.height - 100.f);
-    self.clock.minuteHandColor = [UIColor yellowColor];
-    self.clock.hourHandColor = [UIColor yellowColor];
-    self.clock.secondHandColor = [UIColor yellowColor];
-    self.clock.clockBorderColor = [UIColor yellowColor];
-    self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
-                                   NSForegroundColorAttributeName : [UIColor yellowColor]};
+//    self.clock.minuteHandColor = [UIColor yellowColor];
+//    self.clock.hourHandColor = [UIColor yellowColor];
+//    self.clock.secondHandColor = [UIColor yellowColor];
+//    self.clock.clockBorderColor = [UIColor yellowColor];
+//    self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
+//                                   NSForegroundColorAttributeName : [UIColor yellowColor]};
     [self.view addSubview:self.clock];
     [self.clock start];
     
@@ -41,7 +41,7 @@
     [switchButton setTitle:@"Start" forState:UIControlStateNormal];
     [switchButton setTitle:@"Stop" forState:UIControlStateSelected];
     [switchButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
-    [self.view addSubview:switchButton];
+//    [self.view addSubview:switchButton];
 }
 
 - (void)switchButtongClick:(UIButton *)sender{
