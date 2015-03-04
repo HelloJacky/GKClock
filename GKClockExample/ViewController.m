@@ -43,7 +43,7 @@
     [switchButton setTitle:@"Start" forState:UIControlStateNormal];
     [switchButton setTitle:@"Stop" forState:UIControlStateSelected];
     [switchButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
-//    [self.view addSubview:switchButton];
+    [self.view addSubview:switchButton];
 }
 
 - (void)switchButtongClick:(UIButton *)sender{
