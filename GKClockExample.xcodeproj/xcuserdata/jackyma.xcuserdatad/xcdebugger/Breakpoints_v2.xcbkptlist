@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GKClockExample/GKClock/GKClock.m"
-            timestampString = "447137329.601496"
+            timestampString = "447154395.570916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-drawRect:"
             landmarkType = "5">
          </BreakpointContent>

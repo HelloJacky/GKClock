@@ -34,13 +34,12 @@
         _minuteHandColor = [UIColor lightGrayColor];
         _secondHandColor = [UIColor redColor];
         
-
-        
         _momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:40],
                              NSForegroundColorAttributeName : [UIColor whiteColor]};
         
         _momentList = @[@"12" ,@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11"];
         
+        _centerPointColor = [UIColor lightGrayColor];
         _calendar = [NSCalendar currentCalendar];
         
         [self initTimer];
@@ -76,7 +75,7 @@
     CGContextDrawPath(context, kCGPathFillStroke);
     
     NSArray *momentPointList = [self momentRectList];
-    //draw moment
+    //绘制表盘刻度
     for (NSInteger i = 0; i < _momentList.count; i++) {
         NSString *momentStr = _momentList[i];
         CGPoint momentPoint = [momentPointList[i] CGPointValue];
@@ -84,7 +83,7 @@
     }
     //    CGContextRelease(context);
     
-    //draw clock hand and add
+    //绘制表盘指针
     [self drawClockHand];
 }
 
@@ -92,12 +91,14 @@
     UIImage *hourHandImage = [self drawHourHand];
     UIImage *minuteHandImage = [self drawMinuteHand];
     UIImage *secondHandImage = [self drawSecondHand];
+    UIImage *centerPointImage = [self drawCenterPoint];
     
     CGSize hourHandSize = hourHandImage.size;
     CGSize minuteHandSize = minuteHandImage.size;
     CGSize secondHandSize = secondHandImage.size;
+    CGSize centerPointSize = centerPointImage.size;
     
-    //add hour hand
+    //添加时针到表盘
     _hourHand = [[UIImageView alloc] initWithImage:hourHandImage];
     _hourHand.contentMode = UIViewContentModeTop;
     _hourHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - hourHandSize.width/2,
@@ -106,7 +107,7 @@
                                  hourHandSize.height * 2);
     [self addSubview:_hourHand];
     
-    //add minute hand
+    //添加分针到表盘
     _minuteHand = [[UIImageView alloc] initWithImage:minuteHandImage];
     _minuteHand.contentMode = UIViewContentModeTop;
     _minuteHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - minuteHandSize.width / 2,
@@ -115,7 +116,7 @@
                                    minuteHandSize.height * 2);
     [self addSubview:_minuteHand];
     
-    //add second hand
+    //添加秒针到表盘
     _secondHand = [[UIImageView alloc] initWithImage:secondHandImage];
     _secondHand.contentMode = UIViewContentModeTop;
     _secondHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - secondHandSize.width / 2,
@@ -124,6 +125,12 @@
                                    secondHandSize.height * 2);
     [self addSubview:_secondHand];
     
+    //添加中心圆点到表盘
+    UIImageView *centerImageView = [[UIImageView alloc] initWithImage:centerPointImage];
+    centerImageView.contentMode = UIViewContentModeCenter;
+    centerImageView.frame = CGRectMake(0, 0, centerPointSize.width, centerPointSize.height);
+    centerImageView.center = CGPointMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2);
+    [self addSubview:centerImageView];
     
 }
 
@@ -160,12 +167,24 @@
     return image;
 }
 
+- (UIImage *)drawCenterPoint{
+    CGSize centerPointSize = CGSizeMake(20.f, 20.f);
+    UIGraphicsBeginImageContextWithOptions(centerPointSize, NO, [UIScreen mainScreen].scale);
+    UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, centerPointSize.width, centerPointSize.height)
+                                                     cornerRadius:centerPointSize.height/2];
+    [_centerPointColor setFill];
+    [bPath fill];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (NSArray *)momentRectList{
     NSMutableArray *pointList = [NSMutableArray array];
     CGRect maxfontRect = [_momentList[0] boundingRectWithSize:CGSizeMake(_radius, MAXFLOAT)
-                                                   options:0
-                                                attributes:_momentAttribute
-                                                   context:nil];
+                                                      options:0
+                                                   attributes:_momentAttribute
+                                                      context:nil];
     CGFloat samllerRadius = _radius - MAX(maxfontRect.size.width/2, maxfontRect.size.height/2);
     for (NSInteger i = 0; i < 12; i++) {
         NSString *momentStr = _momentList[i];
