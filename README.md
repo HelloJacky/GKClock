@@ -27,6 +27,10 @@ self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"Amer
 
 <img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/custom_style.png">
 
+###More Custom Styles：
+
+<img src="https://raw.githubusercontent.com/HelloJacky/GKClock/master/ReadmeResources/more_custom_styles.png">
+
 ##Contact
 If you have any questions comments or suggestions, send me a message. If you find a bug, or want to submit a pull request, let me know.
 
