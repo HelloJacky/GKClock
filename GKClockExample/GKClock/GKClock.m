@@ -27,7 +27,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         _clockTintColor = [UIColor blackColor];
-        _clockBorderWidth = 1.0f;
+        _clockBorderWidth = 2.0f;
         _clockBorderColor = [UIColor whiteColor];
         
         _hourHandColor = [UIColor lightGrayColor];
@@ -66,6 +66,8 @@
 
 - (void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetAllowsAntialiasing(context, true);
+    CGContextSetShouldAntialias(context, true);
     CGContextSetStrokeColorWithColor(context, _clockBorderColor.CGColor);
     CGContextSetFillColorWithColor(context, _clockTintColor.CGColor);
     CGContextSetLineWidth(context, _clockBorderWidth);

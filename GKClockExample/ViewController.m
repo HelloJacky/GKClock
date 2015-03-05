@@ -33,7 +33,6 @@
     self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
                                    NSForegroundColorAttributeName : [UIColor yellowColor]};
     
-    
     UIButton *switchButton =  [UIButton buttonWithType:UIButtonTypeCustom];
     switchButton.layer.borderWidth = 1.f;
     switchButton.layer.borderColor = [UIColor yellowColor].CGColor;
