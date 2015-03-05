@@ -22,6 +22,7 @@
 @implementation GKClock
 
 #pragma mark -- Init Methods
+
 - (id)init{
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
@@ -31,8 +32,13 @@
         _clockBorderColor = [UIColor whiteColor];
         
         _hourHandColor = [UIColor lightGrayColor];
+        _hourHandWidth = 7.f;
+        
         _minuteHandColor = [UIColor lightGrayColor];
+        _minuteHandWidth = 5.f;
+        
         _secondHandColor = [UIColor redColor];
+        _secondHandWidth = 3.f;
         
         _momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:40],
                              NSForegroundColorAttributeName : [UIColor whiteColor]};
@@ -40,6 +46,8 @@
         _momentList = @[@"12" ,@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11"];
         
         _centerPointColor = [UIColor lightGrayColor];
+        _centerPointRadius = 10.f;
+        
         _calendar = [NSCalendar currentCalendar];
         
         [self initTimer];
@@ -60,7 +68,6 @@
         
     });
 }
-
 
 #pragma mark -- Draw Clock Methods
 
@@ -141,7 +148,7 @@
 }
 
 - (UIImage *)drawHourHand{
-    CGSize hourHandSize = CGSizeMake(7.f, _radius * 2.5 / 5);
+    CGSize hourHandSize = CGSizeMake(_hourHandWidth, _radius * 2.5 / 5);
     UIGraphicsBeginImageContextWithOptions(hourHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, hourHandSize.width, hourHandSize.height)];
     [_hourHandColor setFill];
@@ -152,7 +159,7 @@
 }
 
 - (UIImage *)drawMinuteHand{
-    CGSize minuteHandSize = CGSizeMake(5.f, _radius * 3.5/ 5);
+    CGSize minuteHandSize = CGSizeMake(_minuteHandWidth, _radius * 3.5/ 5);
     UIGraphicsBeginImageContextWithOptions(minuteHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, minuteHandSize.width, minuteHandSize.height)];
     [_minuteHandColor setFill];
@@ -163,7 +170,7 @@
 }
 
 - (UIImage *)drawSecondHand{
-    CGSize secondHandSize = CGSizeMake(3.f, _radius * 4 / 5);
+    CGSize secondHandSize = CGSizeMake(_secondHandWidth, _radius * 4 / 5);
     UIGraphicsBeginImageContextWithOptions(secondHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, secondHandSize.width, secondHandSize.height)];
     [_secondHandColor setFill];
@@ -174,10 +181,10 @@
 }
 
 - (UIImage *)drawCenterPoint{
-    CGSize centerPointSize = CGSizeMake(20.f, 20.f);
+    CGSize centerPointSize = CGSizeMake(2 * _centerPointRadius, 2 * _centerPointRadius);
     UIGraphicsBeginImageContextWithOptions(centerPointSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, centerPointSize.width, centerPointSize.height)
-                                                     cornerRadius:centerPointSize.height/2];
+                                                     cornerRadius:_centerPointRadius];
     [_centerPointColor setFill];
     [bPath fill];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -210,6 +217,7 @@
 }
 
 #pragma mark -- Clock Manage Methods
+
 - (void)start{
     dispatch_resume(_timer);
 }
@@ -234,4 +242,7 @@
         _secondHand.transform = CGAffineTransformMakeRotation(secondAngle * (M_PI / 180.f));
     }];
 }
+
+
+
 @end
