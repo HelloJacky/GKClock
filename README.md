@@ -17,8 +17,8 @@ self.clock.frame = self.frame;
 ###Use Custom Style：
  
 ```objective-c
-self.clock.minuteHandColor = [UIColor yellowColor];
 self.clock.hourHandColor = [UIColor yellowColor];
+self.clock.minuteHandColor = [UIColor yellowColor];
 self.clock.secondHandColor = [UIColor yellowColor];
 self.clock.clockBorderColor = [UIColor yellowColor];
 self.clock.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:35],
