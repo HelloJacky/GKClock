@@ -181,6 +181,7 @@
 				TargetAttributes = {
 					9DB24C881A89EDFB003AC5EF = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7V2NENLTGE;
 					};
 					9DB24CA11A89EDFC003AC5EF = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -357,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhanchuan Zhao (77WZW6CUG2)";
 				INFOPLIST_FILE = GKClockExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -367,6 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhanchuan Zhao (77WZW6CUG2)";
 				INFOPLIST_FILE = GKClockExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,6 +429,7 @@
 				9DB24CAE1A89EDFC003AC5EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9DB24CAF1A89EDFC003AC5EF /* Build configuration list for PBXNativeTarget "GKClockExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +438,7 @@
 				9DB24CB11A89EDFC003AC5EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

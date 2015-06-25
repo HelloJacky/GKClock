@@ -7,19 +7,14 @@
 
 #import "GKClock.h"
 
-@interface GKClock()
-@property (nonatomic, assign) CGFloat radius;
-
-@property (nonatomic, strong) UIImageView *hourHand;
-@property (nonatomic, strong) UIImageView *minuteHand;
-@property (nonatomic, strong) UIImageView *secondHand;
-
-@property (nonatomic, strong) NSCalendar *calendar;
-
-@property (nonatomic, strong) dispatch_source_t timer;
-
-@end
-@implementation GKClock
+@implementation GKClock{
+    CGFloat             _radius;
+    UIImageView         *_hourHand;
+    UIImageView         *_minuteHand;
+    UIImageView         *_secondHand;
+    NSCalendar          *_calendar;
+    dispatch_source_t   _timer;
+}
 
 #pragma mark -- Init Methods
 
@@ -27,28 +22,29 @@
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
         
-        _clockTintColor = [UIColor blackColor];
-        _clockBorderWidth = 2.0f;
-        _clockBorderColor = [UIColor whiteColor];
+        self.clockTintColor = [UIColor blackColor];
+        self.clockBorderWidth = 2.0f;
+        self.clockBorderColor = [UIColor whiteColor];
         
-        _hourHandColor = [UIColor lightGrayColor];
-        _hourHandWidth = 7.f;
+        self.hourHandColor = [UIColor lightGrayColor];
+        self.hourHandWidth = 7.f;
         
-        _minuteHandColor = [UIColor lightGrayColor];
-        _minuteHandWidth = 5.f;
+        self.minuteHandColor = [UIColor lightGrayColor];
+        self.minuteHandWidth = 5.f;
         
-        _secondHandColor = [UIColor redColor];
-        _secondHandWidth = 3.f;
+        self.secondHandColor = [UIColor redColor];
+        self.secondHandWidth = 3.f;
         
-        _momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:40],
-                             NSForegroundColorAttributeName : [UIColor whiteColor]};
+        self.momentAttribute = @{NSFontAttributeName : [UIFont fontWithName:@"American Typewriter" size:40],
+                                 NSForegroundColorAttributeName : [UIColor whiteColor]};
         
-        _momentList = @[@"12" ,@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11"];
+        self.momentList = @[@"12" ,@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11"];
         
-        _centerPointColor = [UIColor lightGrayColor];
-        _centerPointRadius = 10.f;
+        self.centerPointColor = [UIColor lightGrayColor];
+        self.centerPointRadius = 10.f;
         
         _calendar = [NSCalendar currentCalendar];
+        
         
         [self initTimer];
     }
@@ -69,28 +65,27 @@
     });
 }
 
-#pragma mark -- Draw Clock Methods
+#pragma mark -- Draw Clock Mekfthods
 
 - (void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetAllowsAntialiasing(context, true);
     CGContextSetShouldAntialias(context, true);
-    CGContextSetStrokeColorWithColor(context, _clockBorderColor.CGColor);
-    CGContextSetFillColorWithColor(context, _clockTintColor.CGColor);
-    CGContextSetLineWidth(context, _clockBorderWidth);
+    CGContextSetStrokeColorWithColor(context, self.clockBorderColor.CGColor);
+    CGContextSetFillColorWithColor(context, self.clockTintColor.CGColor);
+    CGContextSetLineWidth(context, self.clockBorderWidth);
     _radius = (self.frame.size.width < self.frame.size.height) ? self.frame.size.width / 2 : self.frame.size.height / 2;
-    _radius = _radius - _clockBorderWidth;
+    _radius = _radius - self.clockBorderWidth;
     CGContextAddArc(context,CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2, _radius, 0.f, 2 * M_PI, 0.f);
     CGContextDrawPath(context, kCGPathFillStroke);
     
     NSArray *momentPointList = [self momentRectList];
     //绘制表盘刻度
-    for (NSInteger i = 0; i < _momentList.count; i++) {
-        NSString *momentStr = _momentList[i];
+    for (NSInteger i = 0; i < self.momentList.count; i++) {
+        NSString *momentStr = self.momentList[i];
         CGPoint momentPoint = [momentPointList[i] CGPointValue];
         [momentStr drawAtPoint:momentPoint withAttributes:_momentAttribute];
     }
-    //    CGContextRelease(context);
     
     //绘制表盘指针
     [self drawClockHand];
@@ -102,6 +97,8 @@
     UIImage *secondHandImage = [self drawSecondHand];
     UIImage *centerPointImage = [self drawCenterPoint];
     
+    CGPoint handArchorPoint = CGPointMake(0.5f, 1.f);
+    
     CGSize hourHandSize = hourHandImage.size;
     CGSize minuteHandSize = minuteHandImage.size;
     CGSize secondHandSize = secondHandImage.size;
@@ -110,31 +107,34 @@
     //添加时针到表盘
     _hourHand = [[UIImageView alloc] initWithImage:hourHandImage];
     _hourHand.contentMode = UIViewContentModeTop;
-    _hourHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - hourHandSize.width/2,
-                                 CGRectGetHeight(self.frame)/2 - hourHandSize.height,
+    _hourHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - hourHandSize.width / 2,
+                                 CGRectGetHeight(self.frame) / 2 - hourHandSize.height /2,
                                  hourHandSize.width,
-                                 hourHandSize.height * 2);
+                                 hourHandSize.height);
     _hourHand.layer.shouldRasterize = YES;
+    _hourHand.layer.anchorPoint = handArchorPoint;
     [self addSubview:_hourHand];
     
     //添加分针到表盘
     _minuteHand = [[UIImageView alloc] initWithImage:minuteHandImage];
     _minuteHand.contentMode = UIViewContentModeTop;
-    _minuteHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - minuteHandSize.width / 2,
-                                   CGRectGetHeight(self.frame)/2 - minuteHandSize.height,
+    _minuteHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - minuteHandSize.width / 2,
+                                   CGRectGetHeight(self.frame) / 2 - minuteHandSize.height / 2,
                                    minuteHandSize.width,
-                                   minuteHandSize.height * 2);
+                                   minuteHandSize.height);
     _minuteHand.layer.shouldRasterize = YES;
+    _minuteHand.layer.anchorPoint = handArchorPoint;
     [self addSubview:_minuteHand];
     
     //添加秒针到表盘
     _secondHand = [[UIImageView alloc] initWithImage:secondHandImage];
     _secondHand.contentMode = UIViewContentModeTop;
-    _secondHand.frame = CGRectMake(CGRectGetWidth(self.frame)/2 - secondHandSize.width / 2,
-                                   CGRectGetHeight(self.frame)/2 - secondHandSize.height,
+    _secondHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - secondHandSize.width / 2,
+                                   CGRectGetHeight(self.frame) / 2 - secondHandSize.height / 2,
                                    secondHandSize.width,
-                                   secondHandSize.height * 2);
+                                   secondHandSize.height);
     _secondHand.layer.shouldRasterize = YES;
+    _secondHand.layer.anchorPoint = handArchorPoint;
     [self addSubview:_secondHand];
     
     //添加中心圆点到表盘
@@ -142,16 +142,16 @@
     centerImageView.layer.shouldRasterize = YES;
     centerImageView.contentMode = UIViewContentModeCenter;
     centerImageView.frame = CGRectMake(0, 0, centerPointSize.width, centerPointSize.height);
-    centerImageView.center = CGPointMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2);
+    centerImageView.center = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame) / 2);
     [self addSubview:centerImageView];
     
 }
 
 - (UIImage *)drawHourHand{
-    CGSize hourHandSize = CGSizeMake(_hourHandWidth, _radius * 2.5 / 5);
+    CGSize hourHandSize = CGSizeMake(self.hourHandWidth, _radius * 2.5 / 5);
     UIGraphicsBeginImageContextWithOptions(hourHandSize, NO, [UIScreen mainScreen].scale);
-    UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, hourHandSize.width, hourHandSize.height)];
-    [_hourHandColor setFill];
+    UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, hourHandSize.width, hourHandSize.height) cornerRadius:self.hourHandWidth / 2];
+    [self.hourHandColor setFill];
     [bPath fill];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -159,10 +159,10 @@
 }
 
 - (UIImage *)drawMinuteHand{
-    CGSize minuteHandSize = CGSizeMake(_minuteHandWidth, _radius * 3.5/ 5);
+    CGSize minuteHandSize = CGSizeMake(self.minuteHandWidth, _radius * 3.5 / 5);
     UIGraphicsBeginImageContextWithOptions(minuteHandSize, NO, [UIScreen mainScreen].scale);
-    UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, minuteHandSize.width, minuteHandSize.height)];
-    [_minuteHandColor setFill];
+    UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, minuteHandSize.width, minuteHandSize.height) cornerRadius:self.minuteHandWidth / 2];
+    [self.minuteHandColor setFill];
     [bPath fill];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -170,9 +170,9 @@
 }
 
 - (UIImage *)drawSecondHand{
-    CGSize secondHandSize = CGSizeMake(_secondHandWidth, _radius * 4 / 5);
+    CGSize secondHandSize = CGSizeMake(self.secondHandWidth, _radius * 4 / 5);
     UIGraphicsBeginImageContextWithOptions(secondHandSize, NO, [UIScreen mainScreen].scale);
-    UIBezierPath *bPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, secondHandSize.width, secondHandSize.height)];
+    UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, secondHandSize.width, secondHandSize.height) cornerRadius:self.secondHandWidth / 2];
     [_secondHandColor setFill];
     [bPath fill];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -181,11 +181,11 @@
 }
 
 - (UIImage *)drawCenterPoint{
-    CGSize centerPointSize = CGSizeMake(2 * _centerPointRadius, 2 * _centerPointRadius);
+    CGSize centerPointSize = CGSizeMake(2 * self.centerPointRadius, 2 * self.centerPointRadius);
     UIGraphicsBeginImageContextWithOptions(centerPointSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, centerPointSize.width, centerPointSize.height)
-                                                     cornerRadius:_centerPointRadius];
-    [_centerPointColor setFill];
+                                                     cornerRadius:self.centerPointRadius];
+    [self.centerPointColor setFill];
     [bPath fill];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -194,21 +194,21 @@
 
 - (NSArray *)momentRectList{
     NSMutableArray *pointList = [NSMutableArray array];
-    CGRect maxfontRect = [_momentList[0] boundingRectWithSize:CGSizeMake(_radius, MAXFLOAT)
-                                                      options:0
-                                                   attributes:_momentAttribute
-                                                      context:nil];
-    CGFloat samllerRadius = _radius - MAX(maxfontRect.size.width/2, maxfontRect.size.height/2);
+    CGRect maxfontRect = [self.momentList[0] boundingRectWithSize:CGSizeMake(_radius, MAXFLOAT)
+                                                          options:0
+                                                       attributes:self.momentAttribute
+                                                          context:nil];
+    CGFloat samllerRadius = _radius - MAX(maxfontRect.size.width / 2, maxfontRect.size.height/2);
     for (NSInteger i = 0; i < 12; i++) {
-        NSString *momentStr = _momentList[i];
+        NSString *momentStr = self.momentList[i];
         CGRect fontRect = [momentStr boundingRectWithSize:CGSizeMake(_radius, MAXFLOAT)
                                                   options:0
-                                               attributes:_momentAttribute
+                                               attributes:self.momentAttribute
                                                   context:nil];
         
         CGFloat angle = i * 30;
-        CGFloat x = CGRectGetWidth(self.frame)/2 + samllerRadius * sin(angle * M_PI / 180.f) - fontRect.size.width / 2;
-        CGFloat y = CGRectGetHeight(self.frame)/2 - samllerRadius * cos(angle * M_PI / 180.f) - fontRect.size.height / 2 ;
+        CGFloat x = CGRectGetWidth(self.frame) / 2 + samllerRadius * sin(angle * M_PI / 180.f) - fontRect.size.width / 2;
+        CGFloat y = CGRectGetHeight(self.frame) / 2 - samllerRadius * cos(angle * M_PI / 180.f) - fontRect.size.height / 2 ;
         
         [pointList addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
     }
@@ -228,11 +228,14 @@
 
 - (void)updateClock{
     NSDate *date = [NSDate date];
-    
     NSDateComponents *dateComponents = [_calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
-    CGFloat hourAngle =  0.5 * (60.f * dateComponents.hour + dateComponents.minute);
+    //每小时转动的度数*（当前的小时数 + 当前的分钟数转化的小时数）
+    CGFloat hourAngle =  30.f * (dateComponents.hour + dateComponents.minute / 60);
+    //每分钟转动的度数*当前分钟数
     CGFloat minuteAngle = 6.f * dateComponents.minute;
+    //每秒钟转动的度数*当前秒数
     CGFloat secondAngle = 6.f * dateComponents.second;
+    
     hourAngle = hourAngle > 360.f ? hourAngle - 360.f : hourAngle;
     minuteAngle = minuteAngle > 360.f ? minuteAngle - 360.f : minuteAngle;
     secondAngle = secondAngle > 360.f ? secondAngle - 360.f : secondAngle;
