@@ -22,12 +22,9 @@
     self.clockList = [NSMutableArray array];
     
     self.view.backgroundColor = [UIColor blackColor];
-//    [self setupSmallClock];
-//    [self setupMiddleClock];
-//    [self setupBigClock];
-    GKClock *clock = [[GKClock alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:clock];
-    [clock start];
+    [self setupSmallClock];
+    [self setupMiddleClock];
+    [self setupBigClock];
     
     
     UIButton *switchButton =  [UIButton buttonWithType:UIButtonTypeCustom];
