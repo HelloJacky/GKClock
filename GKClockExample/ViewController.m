@@ -28,7 +28,7 @@
     
     UIButton *switchButton =  [UIButton buttonWithType:UIButtonTypeCustom];
     switchButton.layer.borderWidth = 1.f;
-    switchButton.layer.borderColor = [UIColor yellowColor].CGColor;
+    switchButton.layer.borderColor = [UIColor whiteColor].CGColor;
     switchButton.frame = CGRectMake(10.f, CGRectGetMaxY(self.view.frame) - 50.f, self.view.frame.size.width - 20.f, 40.f);
     [switchButton addTarget:self action:@selector(switchButtongClick:) forControlEvents:UIControlEventTouchUpInside];
     [switchButton setTitle:@"Stop" forState:UIControlStateNormal];

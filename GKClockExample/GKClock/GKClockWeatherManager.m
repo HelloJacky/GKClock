@@ -40,12 +40,11 @@
 }
 
 - (void)fetchCurrentConditions {
-    _isFirstUpdate = YES;
     if (![CLLocationManager locationServicesEnabled]) {
         NSLog(@"定位服务当前可能尚未打开，请设置打开！");
         return;
     }
-    
+    _isFirstUpdate = YES;
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined){ // 如果没有授权则请求用户授权
         if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [_locationManager requestWhenInUseAuthorization];
@@ -57,10 +56,10 @@
 #pragma mark -- CLLocationManagerDelegate Method
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    if (_isFirstUpdate) {
-        _isFirstUpdate = NO;
+    if (!_isFirstUpdate) {
         return;
     }
+    _isFirstUpdate = NO;
     CLLocation *location = [locations lastObject];
     if (location.horizontalAccuracy > 0) {
         [self fetchWeatherConditionsForLocation:location.coordinate];  // 获取当前位置天气
