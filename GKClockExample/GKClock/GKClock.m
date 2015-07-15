@@ -6,36 +6,47 @@
 //
 
 #import "GKClock.h"
+#import "GKClockWeatherManager.h"
+
+@interface GKClock() <GKClockWeatherManagerDelegate>
+
+@end
 
 @implementation GKClock{
-    CGFloat             _radius;
-    UIImageView         *_hourHand;
-    UIImageView         *_minuteHand;
-    UIImageView         *_secondHand;
-    NSCalendar          *_calendar;
-    dispatch_source_t   _timer;
+    
+    CGFloat                 _radius;
+    UIImageView             *_hourHandImageView;
+    UIImageView             *_minuteHandImageView;
+    UIImageView             *_secondHandImageView;
+    UIImageView             *_conditionsImageView;
+    NSCalendar              *_calendar;
+    dispatch_source_t       _timer;
+    GKClockWeatherManager   *_weatherManager;
+    
 }
 
 #pragma mark -- Init Methods
 
-- (id)init{
+- (id)init {
     if (self = [super init]) {
         [self initStyle];
         [self initTimer];
+        [self initWeatherManager];
     }
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame{
+- (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initStyle];
         [self initTimer];
+        [self initWeatherManager];
     }
     
     return self;
 }
 
-- (void)initStyle{
+- (void)initStyle {
     self.backgroundColor = [UIColor clearColor];
     
     _clockTintColor = [UIColor blackColor];
@@ -62,7 +73,7 @@
     _calendar = [NSCalendar currentCalendar];
 }
 
-- (void)initTimer{
+- (void)initTimer {
     dispatch_queue_t queue = dispatch_queue_create("com.gkclock.queue", DISPATCH_QUEUE_SERIAL);
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(_timer, dispatch_time(DISPATCH_TIME_NOW, 0), NSEC_PER_SEC, 0);
@@ -76,9 +87,15 @@
     });
 }
 
+- (void)initWeatherManager {
+    _weatherManager = [GKClockWeatherManager sharedManager];
+    _weatherManager.delegate = self;
+}
+
+
 #pragma mark -- Draw Clock Methods
 
-- (void)drawRect:(CGRect)rect{
+- (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetAllowsAntialiasing(context, true);
     CGContextSetShouldAntialias(context, true);
@@ -102,12 +119,15 @@
     
     /* 绘制表盘指针 */
     [self drawClockHand];
+    
+    /* 定位并获取本地天气 */
+    [_weatherManager fetchCurrentConditions];
 }
 
 /**
  *  绘制表针
  */
-- (void)drawClockHand{
+- (void)drawClockHand {
     UIImage *hourHandImage = [self drawHourHand];
     UIImage *minuteHandImage = [self drawMinuteHand];
     UIImage *secondHandImage = [self drawSecondHand];
@@ -120,38 +140,48 @@
     CGSize secondHandSize = secondHandImage.size;
     CGSize centerPointSize = centerPointImage.size;
     
+    /* 添加天气到表盘 */
+    _conditionsImageView = [[UIImageView alloc] init];
+    _conditionsImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _conditionsImageView.frame = CGRectMake(0.f,
+                                            CGRectGetHeight(self.frame) / 2 - 0.6f * CGRectGetWidth(self.frame) / 2,
+                                            CGRectGetWidth(self.frame) / 2,
+                                            CGRectGetWidth(self.frame) / 8);
+    _conditionsImageView.center = CGPointMake(CGRectGetWidth(self.frame) / 2, _conditionsImageView.center.y);
+    [self addSubview:_conditionsImageView];
+    
     /* 添加时针到表盘 */
-    _hourHand = [[UIImageView alloc] initWithImage:hourHandImage];
-    _hourHand.contentMode = UIViewContentModeTop;
-    _hourHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - hourHandSize.width / 2,
+    _hourHandImageView = [[UIImageView alloc] initWithImage:hourHandImage];
+    _hourHandImageView.contentMode = UIViewContentModeTop;
+    _hourHandImageView.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - hourHandSize.width / 2,
                                  CGRectGetHeight(self.frame) / 2 - hourHandSize.height /2,
                                  hourHandSize.width,
                                  hourHandSize.height);
-    _hourHand.layer.shouldRasterize = YES;
-    _hourHand.layer.anchorPoint = handArchorPoint;
-    [self addSubview:_hourHand];
+    _hourHandImageView.layer.shouldRasterize = YES;
+    _hourHandImageView.layer.anchorPoint = handArchorPoint;
+    [self addSubview:_hourHandImageView];
     
     /* 添加分针到表盘 */
-    _minuteHand = [[UIImageView alloc] initWithImage:minuteHandImage];
-    _minuteHand.contentMode = UIViewContentModeTop;
-    _minuteHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - minuteHandSize.width / 2,
+    _minuteHandImageView = [[UIImageView alloc] initWithImage:minuteHandImage];
+    _minuteHandImageView.contentMode = UIViewContentModeTop;
+    _minuteHandImageView.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - minuteHandSize.width / 2,
                                    CGRectGetHeight(self.frame) / 2 - minuteHandSize.height / 2,
                                    minuteHandSize.width,
                                    minuteHandSize.height);
-    _minuteHand.layer.shouldRasterize = YES;
-    _minuteHand.layer.anchorPoint = handArchorPoint;
-    [self addSubview:_minuteHand];
+    _minuteHandImageView.layer.shouldRasterize = YES;
+    _minuteHandImageView.layer.anchorPoint = handArchorPoint;
+    [self addSubview:_minuteHandImageView];
     
     /* 添加秒针到表盘 */
-    _secondHand = [[UIImageView alloc] initWithImage:secondHandImage];
-    _secondHand.contentMode = UIViewContentModeTop;
-    _secondHand.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - secondHandSize.width / 2,
+    _secondHandImageView = [[UIImageView alloc] initWithImage:secondHandImage];
+    _secondHandImageView.contentMode = UIViewContentModeTop;
+    _secondHandImageView.frame = CGRectMake(CGRectGetWidth(self.frame) / 2 - secondHandSize.width / 2,
                                    CGRectGetHeight(self.frame) / 2 - secondHandSize.height / 2,
                                    secondHandSize.width,
                                    secondHandSize.height);
-    _secondHand.layer.shouldRasterize = YES;
-    _secondHand.layer.anchorPoint = handArchorPoint;
-    [self addSubview:_secondHand];
+    _secondHandImageView.layer.shouldRasterize = YES;
+    _secondHandImageView.layer.anchorPoint = handArchorPoint;
+    [self addSubview:_secondHandImageView];
     
     /* 添加中心圆点到表盘 */
     UIImageView *centerImageView = [[UIImageView alloc] initWithImage:centerPointImage];
@@ -168,7 +198,7 @@
  *
  *  @return 绘制生成的时针图片
  */
-- (UIImage *)drawHourHand{
+- (UIImage *)drawHourHand {
     CGSize hourHandSize = CGSizeMake(self.hourHandWidth, _radius * 2.5 / 5);
     UIGraphicsBeginImageContextWithOptions(hourHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, hourHandSize.width, hourHandSize.height)
@@ -185,7 +215,7 @@
  *
  *  @return 绘制生成的分针图片
  */
-- (UIImage *)drawMinuteHand{
+- (UIImage *)drawMinuteHand {
     CGSize minuteHandSize = CGSizeMake(self.minuteHandWidth, _radius * 3.5 / 5);
     UIGraphicsBeginImageContextWithOptions(minuteHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, minuteHandSize.width, minuteHandSize.height)
@@ -202,7 +232,7 @@
  *
  *  @return 绘制生成的秒针图片
  */
-- (UIImage *)drawSecondHand{
+- (UIImage *)drawSecondHand {
     CGSize secondHandSize = CGSizeMake(self.secondHandWidth, _radius * 4 / 5);
     UIGraphicsBeginImageContextWithOptions(secondHandSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, secondHandSize.width, secondHandSize.height)
@@ -219,7 +249,7 @@
  *
  *  @return 绘制生成的原点图片
  */
-- (UIImage *)drawCenterPoint{
+- (UIImage *)drawCenterPoint {
     CGSize centerPointSize = CGSizeMake(2 * self.centerPointRadius, 2 * self.centerPointRadius);
     UIGraphicsBeginImageContextWithOptions(centerPointSize, NO, [UIScreen mainScreen].scale);
     UIBezierPath *bPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, centerPointSize.width, centerPointSize.height)
@@ -236,7 +266,7 @@
  *
  *  @return 刻度位置数组
  */
-- (NSArray *)momentRectList{
+- (NSArray *)momentRectList {
     NSMutableArray *pointList = [NSMutableArray array];
     CGRect maxfontRect = [self.momentList[0] boundingRectWithSize:CGSizeMake(_radius, MAXFLOAT)
                                                           options:0
@@ -249,7 +279,6 @@
                                                   options:0
                                                attributes:self.momentAttribute
                                                   context:nil];
-        
         CGFloat angle = i * 30;
         CGFloat x = CGRectGetWidth(self.frame) / 2 + samllerRadius * sin(angle * M_PI / 180.f) - fontRect.size.width / 2;
         CGFloat y = CGRectGetHeight(self.frame) / 2 - samllerRadius * cos(angle * M_PI / 180.f) - fontRect.size.height / 2 ;
@@ -264,21 +293,21 @@
 /**
  *  启动定时器
  */
-- (void)start{
+- (void)start {
     dispatch_resume(_timer);
 }
 
 /**
  *  定制定时器
  */
-- (void)stop{
+- (void)stop {
     dispatch_suspend(_timer);
 }
 
 /**
  *  更新表盘指针角度，让指针转起来
  */
-- (void)updateClock{
+- (void)updateClock {
     NSDate *date = [NSDate date];
     NSDateComponents *dateComponents = [_calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
     
@@ -294,11 +323,23 @@
     
     /* 旋转表针，并添加动画 */
     [UIView animateWithDuration:0.075 animations:^{
-        _hourHand.transform = CGAffineTransformMakeRotation(hourAngle * (M_PI / 180.f));
-        _minuteHand.transform = CGAffineTransformMakeRotation(minuteAngle * (M_PI / 180.f));
-        _secondHand.transform = CGAffineTransformMakeRotation(secondAngle * (M_PI / 180.f));
+        _hourHandImageView.transform = CGAffineTransformMakeRotation(hourAngle * (M_PI / 180.f));
+        _minuteHandImageView.transform = CGAffineTransformMakeRotation(minuteAngle * (M_PI / 180.f));
+        _secondHandImageView.transform = CGAffineTransformMakeRotation(secondAngle * (M_PI / 180.f));
     }];
 }
 
+#pragma mark -- WeatherManager Delegate Methods
+
+- (void)fetchWeatherConditionsSuccess:(NSString *)iconName {
+    UIImage *conditionsImage = [UIImage imageNamed:iconName];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      _conditionsImageView.image = conditionsImage;
+    });
+}
+
+- (void)fetchWeatherConditionsFailed:(NSError *)error {
+    NSLog(@"获取天气数据失败:%@", error);
+}
 
 @end

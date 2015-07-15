@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GKClock : UIView
+
 @property (nonatomic, strong) UIColor *clockTintColor;          // 钟表表盘背景颜色
 @property (nonatomic, assign) CGFloat clockBorderWidth;         // 钟表边框宽度
 @property (nonatomic, strong) UIColor *clockBorderColor;        // 钟表边框颜色
