@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9DB24C8F1A89EDFB003AC5EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C8E1A89EDFB003AC5EF /* main.m */; };
+		9DB24C921A89EDFB003AC5EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C911A89EDFB003AC5EF /* AppDelegate.m */; };
+		9DB24C951A89EDFB003AC5EF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C941A89EDFB003AC5EF /* ViewController.m */; };
+		9DB24C981A89EDFB003AC5EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DB24C961A89EDFB003AC5EF /* Main.storyboard */; };
+		9DB24C9A1A89EDFB003AC5EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DB24C991A89EDFB003AC5EF /* Images.xcassets */; };
+		9DB24C9D1A89EDFB003AC5EF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DB24C9B1A89EDFB003AC5EF /* LaunchScreen.xib */; };
+		9DB24CA91A89EDFC003AC5EF /* GKClockExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24CA81A89EDFC003AC5EF /* GKClockExampleTests.m */; };
+		9DB24CB51A89EEFA003AC5EF /* GKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24CB41A89EEFA003AC5EF /* GKClock.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DB24CA31A89EDFC003AC5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DB24C811A89EDFB003AC5EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DB24C881A89EDFB003AC5EF;
+			remoteInfo = GKClockExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9DB24C891A89EDFB003AC5EF /* GKClockExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKClockExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB24C8D1A89EDFB003AC5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DB24C8E1A89EDFB003AC5EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9DB24C901A89EDFB003AC5EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9DB24C911A89EDFB003AC5EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9DB24C931A89EDFB003AC5EF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9DB24C941A89EDFB003AC5EF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9DB24C971A89EDFB003AC5EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9DB24C991A89EDFB003AC5EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9DB24C9C1A89EDFB003AC5EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9DB24CA21A89EDFC003AC5EF /* GKClockExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GKClockExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DB24CA71A89EDFC003AC5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DB24CA81A89EDFC003AC5EF /* GKClockExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GKClockExampleTests.m; sourceTree = "<group>"; };
+		9DB24CB31A89EEFA003AC5EF /* GKClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKClock.h; sourceTree = "<group>"; };
+		9DB24CB41A89EEFA003AC5EF /* GKClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKClock.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9DB24C861A89EDFB003AC5EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DB24C9F1A89EDFC003AC5EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9DB24C801A89EDFB003AC5EF = {
+			isa = PBXGroup;
+			children = (
+				9DB24C8B1A89EDFB003AC5EF /* GKClockExample */,
+				9DB24CA51A89EDFC003AC5EF /* GKClockExampleTests */,
+				9DB24C8A1A89EDFB003AC5EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9DB24C8A1A89EDFB003AC5EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24C891A89EDFB003AC5EF /* GKClockExample.app */,
+				9DB24CA21A89EDFC003AC5EF /* GKClockExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DB24C8B1A89EDFB003AC5EF /* GKClockExample */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24CB21A89EE15003AC5EF /* GKClock */,
+				9DB24C901A89EDFB003AC5EF /* AppDelegate.h */,
+				9DB24C911A89EDFB003AC5EF /* AppDelegate.m */,
+				9DB24C931A89EDFB003AC5EF /* ViewController.h */,
+				9DB24C941A89EDFB003AC5EF /* ViewController.m */,
+				9DB24C961A89EDFB003AC5EF /* Main.storyboard */,
+				9DB24C991A89EDFB003AC5EF /* Images.xcassets */,
+				9DB24C9B1A89EDFB003AC5EF /* LaunchScreen.xib */,
+				9DB24C8C1A89EDFB003AC5EF /* Supporting Files */,
+			);
+			path = GKClockExample;
+			sourceTree = "<group>";
+		};
+		9DB24C8C1A89EDFB003AC5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24C8D1A89EDFB003AC5EF /* Info.plist */,
+				9DB24C8E1A89EDFB003AC5EF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9DB24CA51A89EDFC003AC5EF /* GKClockExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24CA81A89EDFC003AC5EF /* GKClockExampleTests.m */,
+				9DB24CA61A89EDFC003AC5EF /* Supporting Files */,
+			);
+			path = GKClockExampleTests;
+			sourceTree = "<group>";
+		};
+		9DB24CA61A89EDFC003AC5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24CA71A89EDFC003AC5EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9DB24CB21A89EE15003AC5EF /* GKClock */ = {
+			isa = PBXGroup;
+			children = (
+				9DB24CB31A89EEFA003AC5EF /* GKClock.h */,
+				9DB24CB41A89EEFA003AC5EF /* GKClock.m */,
+			);
+			path = GKClock;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DB24C881A89EDFB003AC5EF /* GKClockExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DB24CAC1A89EDFC003AC5EF /* Build configuration list for PBXNativeTarget "GKClockExample" */;
+			buildPhases = (
+				9DB24C851A89EDFB003AC5EF /* Sources */,
+				9DB24C861A89EDFB003AC5EF /* Frameworks */,
+				9DB24C871A89EDFB003AC5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GKClockExample;
+			productName = GKClockExample;
+			productReference = 9DB24C891A89EDFB003AC5EF /* GKClockExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9DB24CA11A89EDFC003AC5EF /* GKClockExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DB24CAF1A89EDFC003AC5EF /* Build configuration list for PBXNativeTarget "GKClockExampleTests" */;
+			buildPhases = (
+				9DB24C9E1A89EDFC003AC5EF /* Sources */,
+				9DB24C9F1A89EDFC003AC5EF /* Frameworks */,
+				9DB24CA01A89EDFC003AC5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DB24CA41A89EDFC003AC5EF /* PBXTargetDependency */,
+			);
+			name = GKClockExampleTests;
+			productName = GKClockExampleTests;
+			productReference = 9DB24CA21A89EDFC003AC5EF /* GKClockExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9DB24C811A89EDFB003AC5EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Jacky;
+				TargetAttributes = {
+					9DB24C881A89EDFB003AC5EF = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7V2NENLTGE;
+					};
+					9DB24CA11A89EDFC003AC5EF = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 9DB24C881A89EDFB003AC5EF;
+					};
+				};
+			};
+			buildConfigurationList = 9DB24C841A89EDFB003AC5EF /* Build configuration list for PBXProject "GKClockExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9DB24C801A89EDFB003AC5EF;
+			productRefGroup = 9DB24C8A1A89EDFB003AC5EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DB24C881A89EDFB003AC5EF /* GKClockExample */,
+				9DB24CA11A89EDFC003AC5EF /* GKClockExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9DB24C871A89EDFB003AC5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB24C981A89EDFB003AC5EF /* Main.storyboard in Resources */,
+				9DB24C9D1A89EDFB003AC5EF /* LaunchScreen.xib in Resources */,
+				9DB24C9A1A89EDFB003AC5EF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DB24CA01A89EDFC003AC5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DB24C851A89EDFB003AC5EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB24C951A89EDFB003AC5EF /* ViewController.m in Sources */,
+				9DB24C921A89EDFB003AC5EF /* AppDelegate.m in Sources */,
+				9DB24CB51A89EEFA003AC5EF /* GKClock.m in Sources */,
+				9DB24C8F1A89EDFB003AC5EF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DB24C9E1A89EDFC003AC5EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB24CA91A89EDFC003AC5EF /* GKClockExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DB24CA41A89EDFC003AC5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DB24C881A89EDFB003AC5EF /* GKClockExample */;
+			targetProxy = 9DB24CA31A89EDFC003AC5EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9DB24C961A89EDFB003AC5EF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DB24C971A89EDFB003AC5EF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9DB24C9B1A89EDFB003AC5EF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9DB24C9C1A89EDFB003AC5EF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9DB24CAA1A89EDFC003AC5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9DB24CAB1A89EDFC003AC5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9DB24CAD1A89EDFC003AC5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhanchuan Zhao (77WZW6CUG2)";
+				INFOPLIST_FILE = GKClockExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9DB24CAE1A89EDFC003AC5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhanchuan Zhao (77WZW6CUG2)";
+				INFOPLIST_FILE = GKClockExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9DB24CB01A89EDFC003AC5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GKClockExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GKClockExample.app/GKClockExample";
+			};
+			name = Debug;
+		};
+		9DB24CB11A89EDFC003AC5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GKClockExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GKClockExample.app/GKClockExample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DB24C841A89EDFB003AC5EF /* Build configuration list for PBXProject "GKClockExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DB24CAA1A89EDFC003AC5EF /* Debug */,
+				9DB24CAB1A89EDFC003AC5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DB24CAC1A89EDFC003AC5EF /* Build configuration list for PBXNativeTarget "GKClockExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DB24CAD1A89EDFC003AC5EF /* Debug */,
+				9DB24CAE1A89EDFC003AC5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DB24CAF1A89EDFC003AC5EF /* Build configuration list for PBXNativeTarget "GKClockExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DB24CB01A89EDFC003AC5EF /* Debug */,
+				9DB24CB11A89EDFC003AC5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9DB24C811A89EDFB003AC5EF /* Project object */;
+}
