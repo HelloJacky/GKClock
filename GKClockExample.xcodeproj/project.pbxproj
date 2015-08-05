@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DA9157B1B54CAB200B00810 /* GKClockWeatherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DA9157A1B54CAB200B00810 /* GKClockWeatherManager.m */; };
 		9DB24C8F1A89EDFB003AC5EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C8E1A89EDFB003AC5EF /* main.m */; };
 		9DB24C921A89EDFB003AC5EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C911A89EDFB003AC5EF /* AppDelegate.m */; };
 		9DB24C951A89EDFB003AC5EF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB24C941A89EDFB003AC5EF /* ViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9DA915791B54CAB200B00810 /* GKClockWeatherManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKClockWeatherManager.h; sourceTree = "<group>"; };
+		9DA9157A1B54CAB200B00810 /* GKClockWeatherManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKClockWeatherManager.m; sourceTree = "<group>"; };
 		9DB24C891A89EDFB003AC5EF /* GKClockExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKClockExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DB24C8D1A89EDFB003AC5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DB24C8E1A89EDFB003AC5EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 			children = (
 				9DB24CB31A89EEFA003AC5EF /* GKClock.h */,
 				9DB24CB41A89EEFA003AC5EF /* GKClock.m */,
+				9DA915791B54CAB200B00810 /* GKClockWeatherManager.h */,
+				9DA9157A1B54CAB200B00810 /* GKClockWeatherManager.m */,
 			);
 			path = GKClock;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				9DB24C951A89EDFB003AC5EF /* ViewController.m in Sources */,
 				9DB24C921A89EDFB003AC5EF /* AppDelegate.m in Sources */,
 				9DB24CB51A89EEFA003AC5EF /* GKClock.m in Sources */,
+				9DA9157B1B54CAB200B00810 /* GKClockWeatherManager.m in Sources */,
 				9DB24C8F1A89EDFB003AC5EF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
